@@ -1,35 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_iterative_power.c                               :+:      :+:    :+:   */
+/*   ft_find_next_prime.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brian <brian@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/27 17:28:53 by bryeap            #+#    #+#             */
-/*   Updated: 2024/03/28 03:25:28 by brian            ###   ########.fr       */
+/*   Created: 2024/03/28 02:55:12 by brian             #+#    #+#             */
+/*   Updated: 2024/03/28 03:02:52 by brian            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_iterative_power(int nb, int power)
+int ft_is_prime(int nb)
 {
-	int cal;
+    int i;
 
-	cal = nb;
-	if (power == 0)
-		return (1);
-	else if (power < 0)
-		return (0);
-	while (power > 1)
-	{
-		cal *= nb;
-		power--;
-	}
-	return (cal);
+    i = 2;
+    if (nb <= 1)
+        return (0);
+    while (i <= nb / 2)
+    {
+        if (nb % i == 0)
+            return (0);
+        i++;
+    }
+    return (1);
+}
+
+int	ft_find_next_prime(int nb)
+{
+	if (nb < 2)
+		return (2);
+	while (!ft_is_prime(nb))
+		nb++;
+	return (nb);
 }
 
 // #include <stdio.h>
 // int main()
 // {
-// 	printf("%d", ft_iterative_power(1, 0));
+// 	printf("%d", ft_find_next_prime(96));
 // 	return (0);
 // }
